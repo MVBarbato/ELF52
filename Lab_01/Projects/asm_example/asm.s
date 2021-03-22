@@ -50,26 +50,26 @@ m_arriere
 
 Div8b:
         CBZ R1, retour_valeur_invalide
-        MOV R8, R1      ;; R8 recebe o valor de R1 - denominador
+        MOV R8, R1
         MOV R6, R3
         MOV R11, #0
 Repeter_le_fractionnement
         CMP R11, R0
         BHI division_arriere
-        ADD R3, R3, #1  ;; incrementa em 1 R3
-        MOV R6, R3      ;; passa o valor de R3 para R6
+        ADD R3, R3, #1  
+        MOV R6, R3      
         PUSH {LR}
-        BL Mul8b        ;; atualiza o valor de R11
+        BL Mul8b       
         POP {LR}
         B Repeter_le_fractionnement
 division_arriere
-        SUB R3, R3, #1  ;; R3 sai somado de um da logica
-        MOV R6, R3      ;; passa o valor para R6 para multiplciar
-        PUSH {LR}       ;; salva o valor do PC antes de executar a funcao para nao perder a ref
-        BL Mul8b        ;; chama a multiplicacao so para att R11
-        POP {LR}        ;; consome o valor de PC que estava na pilha para retomar o ponto de inicio
+        SUB R3, R3, #1  
+        MOV R6, R3      
+        PUSH {LR}       
+        BL Mul8b        
+        POP {LR}        
         SUBS R4, R0, R11
-        BX LR           ;; retorna para ponto de origem
+        BX LR           
 retour_valeur_invalide
         BX LR
 
